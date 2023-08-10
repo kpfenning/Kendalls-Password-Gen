@@ -2,6 +2,7 @@
 var generateBtn = document.querySelector("#generate");
 var charLength = 8;
 
+// variables for the choices and the character options
 var choices = [];
 
 var specialChar = [" ", "!", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@"];
@@ -10,7 +11,7 @@ var upperCase = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P"
 var numbers = ["1","2","3","4","5","6","7","8","9","0"];
 
 
-// Write password to the #password input
+// tells the site to generate the password
 function writePassword() {
   var truePrompts = getPrompts();
 
@@ -21,6 +22,7 @@ function writePassword() {
   }
 }
 
+// code that random generates based on selections made in the prompts
 function generatePassword(){
   var password = "";
   for(var i = 0; i < charLength; i++){
@@ -31,13 +33,16 @@ function generatePassword(){
   return password;
 }
 
+// function for getting each prompt
 function getPrompts () {
   charLength = parseInt(prompt("How many characters do you want your password to be?"))
 
+  // makes sure that user is inputting the correct character length. If not it will ask them to try again
   if(isNaN(charLength) || charLength < 8 || charLength >128){
     alert("Please try again using 8 to 128 characters.");
     return false;
   }
+  // prompts for choosing users preferred characters
   if (confirm("Would you like lowercase characters in your password?")){
     choices = choices.concat(lowerCase);
   }
@@ -54,5 +59,5 @@ function getPrompts () {
 }
 
 
-// Add event listener to generate button
+// event listern for creating the password once the button is pushed
 generateBtn.addEventListener("click", writePassword);
